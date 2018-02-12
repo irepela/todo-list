@@ -2,16 +2,11 @@ import Router from 'koa-router';
 const router = new Router();
 import consul from 'consul';
 import request from 'request';
-import { createReadStream } from 'fs';
 
-let staticService = '';
 let authService = '';
 consul().agent.service.list(function(err, result) {
   if (result['authService']) {
     authService = 'http://' + result['authService']['Address'] + ':' + result['authService']['Port'];
-  }
-  if (result['staticService']) {
-    staticService = 'http://' + result['staticService']['Address'] + ':' + result['staticService']['Port'];
   }
 });
 
@@ -36,14 +31,6 @@ router.post('/authenticate', async(ctx, next) => {
     method: 'POST',
     json: true,
     body: user
-  });
-  ctx.body = response;
-});
-
-router.get('/', async(ctx, next) => {
-  const response = await request({
-    url: staticService,
-    method: 'GET'
   });
   ctx.body = response;
 });

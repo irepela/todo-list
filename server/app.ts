@@ -11,10 +11,10 @@ import send from 'koa-send';
 const PORT = process.env.port || 3000;
 
 const details = {
-  name: 'todoDiscovery',
+  name: 'todoDiscoveryService',
   address: 'localhost',
   port: PORT,
-  id: 'todoDiscovery'
+  id: 'todoDiscoveryService'
 };
 
 consul().agent.service.register(details, err => {
