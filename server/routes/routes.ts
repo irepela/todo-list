@@ -83,12 +83,11 @@ router.post('/toggleTodo', async(ctx, next) => {
 
 router.get('/getTodos/:username', async(ctx, next) => {
   const authServiceUrl = await getAuthServiceUrl();
-  const getTodosRoute = authServiceUrl + '/getTodos/:username';
+  const getTodosRoute = authServiceUrl + '/getTodos/' + ctx.params.username;
   const response = await request({
     url: getTodosRoute,
     method: 'GET',
-    json: true,
-    body: ctx.request.body
+    json: true
   });
   ctx.body = response;
 });
