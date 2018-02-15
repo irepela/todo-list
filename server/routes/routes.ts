@@ -45,6 +45,42 @@ router.post('/authenticate', async(ctx, next) => {
   ctx.body = response;
 });
 
+router.post('/addTodo', async(ctx, next) => {
+  const authServiceUrl = await getAuthServiceUrl();
+  const addTodoRoute = authServiceUrl + '/addTodo';
+  const response = await request({
+    url: addTodoRoute,
+    method: 'POST',
+    json: true,
+    body: ctx.request.body
+  });
+  ctx.body = response;
+});
+
+router.post('/deleteTodo', async(ctx, next) => {
+  const authServiceUrl = await getAuthServiceUrl();
+  const deleteTodoRoute = authServiceUrl + '/deleteTodo';
+  const response = await request({
+    url: deleteTodoRoute,
+    method: 'POST',
+    json: true,
+    body: ctx.request.body
+  });
+  ctx.body = response;
+});
+
+router.post('/toggleTodo', async(ctx, next) => {
+  const authServiceUrl = await getAuthServiceUrl();
+  const toggleTodoRoute = authServiceUrl + '/toggleTodo';
+  const response = await request({
+    url: toggleTodoRoute,
+    method: 'POST',
+    json: true,
+    body: ctx.request.body
+  });
+  ctx.body = response;
+});
+
 export function routes() {
   return router.routes();
 }
