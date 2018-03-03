@@ -1,0 +1,29 @@
+{
+  "todos": [
+    {
+      "id": 1,
+      "title": "Drink morning coffee",
+      "complete": true
+    },
+    {
+      "id": 2,
+      "title": "Review pull requests",
+      "complete": false
+    },
+    {
+      "id": 3,
+      "title": "Participate on morning meetings",
+      "complete": true
+    },
+    {
+      "id": 4,
+      "title": "Play billiard",
+      "complete": false
+    },
+    {
+      "id": 5,
+      "title": "Buy products after work",
+      "complete": false
+    }
+  ]
+}
