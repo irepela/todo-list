@@ -8,7 +8,7 @@ import * as path from "path";
 import serveStatic from 'koa-static';
 import send from 'koa-send';
 
-const PORT = process.env.PORT || 3000;
+const PORT = 3000;
 
 const details = {
   name: 'todoDiscoveryService',
