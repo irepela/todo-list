@@ -33,9 +33,11 @@ router.post('/register', async(ctx, next) => {
 });
 
 router.post('/authenticate', async(ctx, next) => {
+  console.log('Trying to authenticate');
   const authServiceUrl = await getAuthServiceUrl();
   const loginRoute = authServiceUrl + '/authenticate';
   const user = ctx.request.body;
+  console.log('Send POST to auth');
   const response = await request({
     url: loginRoute,
     method: 'POST',
