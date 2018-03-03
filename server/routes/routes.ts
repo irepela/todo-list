@@ -11,7 +11,8 @@ function getAuthServiceUrl(){
       } else {
         let authService = '';
         if (result['authService']) {
-          authService = 'http://' + result['authService']['Address'] + ':' + result['authService']['Port'];
+          // authService = 'http://' + result['authService']['Address'] + ':' + result['authService']['Port'];
+          authService = 'http://irepela-todo-auth.herokuapp.com';
         }
         resolve(authService);
       }
