@@ -192,7 +192,7 @@ var AppComponent = /** @class */ (function () {
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return appConfig; });
 var appConfig = {
-    apiUrl: 'http://irepela-todo-list.herokuapp.com:3000'
+    apiUrl: 'http://irepela-todo-list.herokuapp.com'
 };
 
 

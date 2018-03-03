@@ -82,11 +82,14 @@ router.post('/authenticate', function (ctx, next) { return __awaiter(_this, void
     var authServiceUrl, loginRoute, user, response;
     return __generator(this, function (_a) {
         switch (_a.label) {
-            case 0: return [4 /*yield*/, getAuthServiceUrl()];
+            case 0:
+                console.log('Trying to authenticate');
+                return [4 /*yield*/, getAuthServiceUrl()];
             case 1:
                 authServiceUrl = _a.sent();
                 loginRoute = authServiceUrl + '/authenticate';
                 user = ctx.request.body;
+                console.log('Send POST to auth');
                 return [4 /*yield*/, request_1.default({
                         url: loginRoute,
                         method: 'POST',
