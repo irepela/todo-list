@@ -1,9 +1,10 @@
 {
   "name": "todo-discovery",
-  "version": "0.0.0",
+  "version": "1.0.0",
   "license": "MIT",
   "scripts": {
-    "build": "tsc -p server && webpack --config server/webpack.config.js"
+    "build": "tsc -p server && webpack --config server/webpack.config.js",
+    "start": "node dist/server/app.js"
   },
   "private": true,
   "dependencies": {
@@ -25,5 +26,8 @@
     "ts-loader": "3.5.0",
     "webpack": "3.11.0",
     "codelyzer": "4.1.0"
+  },
+  "engines": {
+    "node": "7.10.1"
   }
 }
