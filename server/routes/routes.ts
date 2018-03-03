@@ -5,18 +5,18 @@ import request from 'request';
 
 function getAuthServiceUrl(){
   return new Promise((resolve, reject) => {
-    consul().agent.service.list((err, result) => {
+    resolve('http://irepela-todo-auth.herokuapp.com');
+/*    consul().agent.service.list((err, result) => {
       if (err) {
         reject(err);
       } else {
         let authService = '';
         if (result['authService']) {
-          // authService = 'http://' + result['authService']['Address'] + ':' + result['authService']['Port'];
-          authService = 'http://irepela-todo-auth.herokuapp.com';
+          authService = 'http://' + result['authService']['Address'] + ':' + result['authService']['Port'];
         }
         resolve(authService);
       }
-    });
+    });*/
   });
 }
 
