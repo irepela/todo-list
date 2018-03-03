@@ -4,7 +4,7 @@
   "license": "MIT",
   "scripts": {
     "build": "tsc -p server && webpack --config server/webpack.config.js",
-    "start": "node dist/server/app.js"
+    "start": "npm run build && node dist/server/app.js"
   },
   "private": true,
   "dependencies": {
