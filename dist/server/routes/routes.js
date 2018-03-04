@@ -38,22 +38,21 @@ var _this = this;
 Object.defineProperty(exports, "__esModule", { value: true });
 var koa_router_1 = require("koa-router");
 var router = new koa_router_1.default();
-var consul_1 = require("consul");
 var request_1 = require("request");
 function getAuthServiceUrl() {
     return new Promise(function (resolve, reject) {
-        consul_1.default().agent.service.list(function (err, result) {
-            if (err) {
+        resolve('http://irepela-todo-auth.herokuapp.com');
+        /*    consul().agent.service.list((err, result) => {
+              if (err) {
                 reject(err);
-            }
-            else {
-                var authService = '';
+              } else {
+                let authService = '';
                 if (result['authService']) {
-                    authService = 'http://' + result['authService']['Address'] + ':' + result['authService']['Port'];
+                  authService = 'http://' + result['authService']['Address'] + ':' + result['authService']['Port'];
                 }
                 resolve(authService);
-            }
-        });
+              }
+            });*/
     });
 }
 router.post('/register', function (ctx, next) { return __awaiter(_this, void 0, void 0, function () {
