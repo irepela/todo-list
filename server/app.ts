@@ -18,6 +18,7 @@ const details = {
 };
 
 consul().agent.service.register(details, err => {
+  console.log(details);
   console.log('Registered todo discovery service');
 });
 
