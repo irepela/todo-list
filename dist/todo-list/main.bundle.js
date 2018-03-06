@@ -624,20 +624,20 @@ var TodoDataService = /** @class */ (function () {
         });
         return this;
     };
-    // Simulate DELETE /todos/:id
-    TodoDataService.prototype.deleteTodoById = function (id) {
+    // Simulate DELETE /todos/:_id
+    TodoDataService.prototype.deleteTodoById = function (_id) {
         var _this = this;
         var currUser = JSON.parse(sessionStorage.getItem('currentUser'));
-        this.http.post(__WEBPACK_IMPORTED_MODULE_2__app_config__["a" /* appConfig */].apiUrl + '/deleteTodo', { username: currUser.username, todoId: id })
+        this.http.post(__WEBPACK_IMPORTED_MODULE_2__app_config__["a" /* appConfig */].apiUrl + '/deleteTodo', { username: currUser.username, todo_id: _id })
             .subscribe(function (response) {
             _this.todos = response.todos.slice();
         });
         return this;
     };
-    // Simulate PUT /todos/:id
-    TodoDataService.prototype.updateTodoById = function (id, values) {
+    // Simulate PUT /todos/:_id
+    TodoDataService.prototype.updateTodoById = function (_id, values) {
         if (values === void 0) { values = {}; }
-        var todo = this.getTodoById(id);
+        var todo = this.getTodoById(_id);
         if (!todo) {
             return null;
         }
@@ -656,15 +656,15 @@ var TodoDataService = /** @class */ (function () {
     TodoDataService.prototype.getAllTodos = function () {
         return this.todos;
     };
-    // Simulate GET /todos/:id
-    TodoDataService.prototype.getTodoById = function (id) {
+    // Simulate GET /todos/:_id
+    TodoDataService.prototype.getTodoById = function (_id) {
         return this.todos
-            .filter(function (todo) { return todo.id === id; })
+            .filter(function (todo) { return todo._id === _id; })
             .pop();
     };
     // Toggle todo complete
     TodoDataService.prototype.toggleTodoComplete = function (todo) {
-        var updatedTodo = this.updateTodoById(todo.id, {
+        var updatedTodo = this.updateTodoById(todo._id, {
             complete: !todo.complete
         });
         var currUser = JSON.parse(sessionStorage.getItem('currentUser'));
@@ -754,7 +754,7 @@ var TodoComponent = /** @class */ (function () {
         this.todoDataService.toggleTodoComplete(todo);
     };
     TodoComponent.prototype.removeTodo = function (todo) {
-        this.todoDataService.deleteTodoById(todo.id);
+        this.todoDataService.deleteTodoById(todo._id);
     };
     Object.defineProperty(TodoComponent.prototype, "todos", {
         get: function () {
