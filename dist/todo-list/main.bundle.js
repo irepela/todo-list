@@ -617,9 +617,6 @@ var TodoDataService = /** @class */ (function () {
     }
     TodoDataService.prototype.addTodo = function (todo) {
         var _this = this;
-        if (!todo.id) {
-            todo.id = ++this.lastId;
-        }
         var currUser = JSON.parse(sessionStorage.getItem('currentUser'));
         this.http.post(__WEBPACK_IMPORTED_MODULE_2__app_config__["a" /* appConfig */].apiUrl + '/addTodo', { username: currUser.username, todo: todo })
             .subscribe(function (response) {
