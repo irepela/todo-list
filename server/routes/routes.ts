@@ -5,7 +5,7 @@ import request from 'request';
 
 function getAuthServiceUrl(){
   return new Promise((resolve, reject) => {
-    resolve('http://irepela-todo-auth.herokuapp.com');
+    resolve('https://irepela-todo-auth.herokuapp.com');
 /*    consul().agent.service.list((err, result) => {
       if (err) {
         reject(err);

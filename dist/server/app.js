@@ -22523,7 +22523,6 @@ const details = {
 };
 
 __WEBPACK_IMPORTED_MODULE_3_consul___default()().agent.service.register(details, err => {
-  console.log(details);
   console.log('Registered todo discovery service');
 });
 
@@ -33628,7 +33627,7 @@ const router = new __WEBPACK_IMPORTED_MODULE_0_koa_router___default.a();
 
 function getAuthServiceUrl(){
   return new Promise((resolve, reject) => {
-    resolve('http://irepela-todo-auth.herokuapp.com');
+    resolve('https://irepela-todo-auth.herokuapp.com');
 /*    consul().agent.service.list((err, result) => {
       if (err) {
         reject(err);

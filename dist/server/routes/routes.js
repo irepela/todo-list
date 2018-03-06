@@ -41,7 +41,7 @@ var router = new koa_router_1.default();
 var request_1 = require("request");
 function getAuthServiceUrl() {
     return new Promise(function (resolve, reject) {
-        resolve('http://irepela-todo-auth.herokuapp.com');
+        resolve('https://irepela-todo-auth.herokuapp.com');
         /*    consul().agent.service.list((err, result) => {
               if (err) {
                 reject(err);
