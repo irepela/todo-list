@@ -22503,6 +22503,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7_koa_static___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_7_koa_static__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_8_koa_send__ = __webpack_require__(130);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_8_koa_send___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_8_koa_send__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9_koa_cors__ = __webpack_require__(372);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9_koa_cors___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_9_koa_cors__);
+
 
 
 
@@ -22527,6 +22530,13 @@ __WEBPACK_IMPORTED_MODULE_3_consul___default()().agent.service.register(details,
 });
 
 const app = new __WEBPACK_IMPORTED_MODULE_0_koa___default.a();
+
+const koaOptions = {
+  origin: true,
+  credentials: true
+};
+app.use(__WEBPACK_IMPORTED_MODULE_9_koa_cors___default()(koaOptions));
+
 app.use(__WEBPACK_IMPORTED_MODULE_2_koa_logger___default()());
 app.use(__WEBPACK_IMPORTED_MODULE_1_koa_compress___default()());
 app.use(__WEBPACK_IMPORTED_MODULE_5_koa_bodyparser___default()());
@@ -33627,8 +33637,8 @@ const router = new __WEBPACK_IMPORTED_MODULE_0_koa_router___default.a();
 
 function getAuthServiceUrl(){
   return new Promise((resolve, reject) => {
-    resolve('https://irepela-todo-auth.herokuapp.com');
-/*    consul().agent.service.list((err, result) => {
+    // resolve('https://irepela-todo-auth.herokuapp.com');
+    __WEBPACK_IMPORTED_MODULE_1_consul___default()().agent.service.list((err, result) => {
       if (err) {
         reject(err);
       } else {
@@ -33638,7 +33648,7 @@ function getAuthServiceUrl(){
         }
         resolve(authService);
       }
-    });*/
+    });
   });
 }
 
@@ -60045,6 +60055,132 @@ function createWrapper(name, options) {
     + '})\n'
   + '})'
 }
+
+
+/***/ }),
+/* 372 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+/**
+ * CORS middleware
+ *
+ * @param {Object} [options]
+ * @return {GeneratorFunction}
+ * @api public
+ */
+module.exports = function getMiddleware(options) {
+  
+  options = options || {};
+
+  var defaults = {
+    origin: true,
+    methods: 'GET,HEAD,PUT,POST,DELETE'
+  };
+
+  // Set defaults
+  for (var key in defaults) {
+    if (!options.hasOwnProperty(key)) {
+      options[key] = defaults[key];
+    }
+  }
+
+  // Set expose
+  if (Array.isArray(options.expose)) {
+    options.expose = options.expose.join(',');
+  }
+
+  // Set maxAge
+  if (typeof options.maxAge === 'number') {
+    options.maxAge = options.maxAge.toString();
+  } else {
+    options.maxAge = null;
+  }
+
+  // Set methods
+  if (Array.isArray(options.methods)) {
+    options.methods = options.methods.join(',');
+  }
+
+  // Set headers
+  if (Array.isArray(options.headers)) {
+    options.headers = options.headers.join(',');
+  }
+
+  return function* cors(next) {
+    
+    /**
+     * Access Control Allow Origin
+     */
+    var origin;
+
+    if (typeof options.origin === 'string') {
+      origin = options.origin;
+    } else if (options.origin === true) {
+      origin = this.get('origin') || '*';
+    } else if (options.origin === false) {
+      origin = options.origin;
+    } else if (typeof options.origin === 'function') {
+      origin = options.origin(this.request);
+    }
+
+    if (origin === false) return;
+
+    this.set('Access-Control-Allow-Origin', origin);
+
+    /**
+     * Access Control Expose Headers
+     */
+    if (options.expose) {
+      this.set('Access-Control-Expose-Headers', options.expose);
+    }
+
+    /**
+     * Access Control Max Age
+     */
+    if (options.maxAge) {
+      this.set('Access-Control-Max-Age', options.maxAge);
+    }
+
+    /**
+     * Access Control Allow Credentials
+     */
+    if (options.credentials === true) {
+      this.set('Access-Control-Allow-Credentials', 'true');
+    }
+
+    /**
+     * Access Control Allow Methods
+     */
+    this.set('Access-Control-Allow-Methods', options.methods);
+
+    /**
+     * Access Control Allow Headers
+     */
+    var headers;
+
+    if (options.headers) {
+      headers = options.headers;
+    } else {
+      headers = this.get('access-control-request-headers');
+    }
+
+    if (headers) {
+      this.set('Access-Control-Allow-Headers', headers);
+    }
+
+    /**
+     * Returns
+     */
+    if (this.method === 'OPTIONS') {
+      this.status = 204;
+    } else {
+      yield next;
+    }
+  };
+};
 
 
 /***/ })
