@@ -7,6 +7,7 @@ import bodyParser from 'koa-bodyparser';
 import * as path from "path";
 import serveStatic from 'koa-static';
 import send from 'koa-send';
+import cors from 'koa-cors';
 
 const PORT = process.env.PORT || 3000;
 
@@ -22,6 +23,13 @@ consul().agent.service.register(details, err => {
 });
 
 const app = new koa();
+
+const koaOptions = {
+  origin: true,
+  credentials: true
+};
+app.use(cors(koaOptions));
+
 app.use(logger());
 app.use(compress());
 app.use(bodyParser());

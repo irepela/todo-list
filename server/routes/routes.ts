@@ -5,8 +5,8 @@ import request from 'request';
 
 function getAuthServiceUrl(){
   return new Promise((resolve, reject) => {
-    resolve('https://irepela-todo-auth.herokuapp.com');
-/*    consul().agent.service.list((err, result) => {
+    // resolve('https://irepela-todo-auth.herokuapp.com');
+    consul().agent.service.list((err, result) => {
       if (err) {
         reject(err);
       } else {
@@ -16,7 +16,7 @@ function getAuthServiceUrl(){
         }
         resolve(authService);
       }
-    });*/
+    });
   });
 }
 

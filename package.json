@@ -16,6 +16,7 @@
     "koa-router": "7.4.0",
     "koa-send": "4.1.2",
     "koa-bodyparser": "4.2.0",
+    "koa-cors": "0.0.16",
     "request": "2.83.0",
     "consul": "0.30.0"
   },
